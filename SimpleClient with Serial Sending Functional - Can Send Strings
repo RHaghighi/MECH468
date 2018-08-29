@@ -54,18 +54,15 @@ void loop()
   if (Serial.available() > 0 ) 
   {
     banana = Serial.readString();
-    //banana.toCharArray(TransmittedBanana, 30);
   }
   else 
   {
     banana = "Waiting";
-    //banana.toCharArray(TransmittedBanana, 30);
   }
 
   
   Serial.println("Sending to LoRa Server");
   // Send a message to LoRa Server
-  // uint8_t data = TransmittedBanana;
   rf95.send((uint8_t*)banana.c_str(), banana.length()+1);
   
   rf95.waitPacketSent();
